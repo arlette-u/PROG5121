@@ -2,18 +2,10 @@ import java.util.Scanner;
 void main(String[]args ) {
     Scanner scanner = new Scanner(System.in);
 
-    String name;
-    String lastName;
     String username;
     String password;
     String cellPhoneNumber;
 
-//poe outcome to include name and last name in welcome message after we make login class
-    System.out.println("Enter your first name.");
-    name=scanner.nextLine();
-
-    System.out.println("Enter your last name");
-    lastName=scanner.nextLine();
 //using a while loop only breaking when captured
     while (true) {
         System.out.println("Create a username(should contain an underscore and is no more than 5 characters long)");
@@ -72,7 +64,7 @@ void main(String[]args ) {
         }
     }
     //LOGIN SECTION
-    Login login = new Login(name, lastName, username, password, cellPhoneNumber);
+    Login login = new Login( username, password, cellPhoneNumber);
     System.out.println("registration successful");
     while (true) {
         System.out.println("Enter your username");

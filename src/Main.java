@@ -33,7 +33,7 @@ void main(String[]args ) {
             boolean hasNumber = false;
             boolean hasCapital = false;
             boolean hasCharacter = false;
-
+//using a charAt= character placement
             for (int i = 0; i < password.length(); i++) {
                 char character = password.charAt(i);
 

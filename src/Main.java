@@ -8,7 +8,7 @@ void main(String[]args ) {
     String password;
     String cellPhoneNumber;
 
-
+//poe outcome to include name and last name in welcome message after we make login class
     System.out.println("Enter your first name.");
     name=scanner.nextLine();
 

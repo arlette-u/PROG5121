@@ -1,19 +1,15 @@
 public class Login {
-    private String name;
-    private String lastName;
     private String username;
     private String password;
     private String cellPhoneNumber;
 
 
-    public Login(String name, String lastName,String username, String password, String cellPhoneNumber) {
-        this.name=name;
-        this.lastName=lastName;
+    public Login(String username, String password, String cellPhoneNumber) {
         this.username = username;
         this.password = password;
         this.cellPhoneNumber = cellPhoneNumber;
     }
-
+//password requirement met using boolean variable hasCapital hasNumber and it hasCharacter
     public boolean checkUserName() {
         return username.contains("_") && username.length() <= 5;
     }
@@ -71,10 +67,10 @@ public class Login {
             return enteredUsername.equals(username)
                     && enteredPassword.equals(password);
         }
-// end welcome message
+// change
         public String returnLoginStatus ( boolean loginSuccessful){
             if (loginSuccessful) {
-                return "Welcome " + name +" ,"+ lastName + " it is great to see you again.";
+                return "Welcome " + username + " it is great to see you again.";
             }
             return "Username or password incorrect, please try again";
         }

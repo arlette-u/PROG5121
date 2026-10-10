@@ -4,9 +4,12 @@ public class Main {
 
     Scanner scanner = new Scanner(System.in);
 
+
     String username;
     String password;
     String cellPhoneNumber;
+
+
 //using a while loop only breaking when captured
     while (true) {
         System.out.println("Create a username(should contain an underscore and is no more than 5 characters long)");
@@ -54,10 +57,7 @@ public class Main {
     while (true) {
         System.out.println("Enter your South African Cellphone Number such contain (+27)");
         cellPhoneNumber = scanner.nextLine();
-        if (cellPhoneNumber.length() == 12
-                && cellPhoneNumber.charAt(0) == '+'
-                && cellPhoneNumber.charAt(1) == '2'
-                && cellPhoneNumber.charAt(2) == '7') {
+        if (cellPhoneNumber.matches("\\+27\\d{9}$") ) {
             System.out.println("Cell phone number successfully added");
             break;
         } else {

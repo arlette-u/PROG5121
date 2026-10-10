@@ -1,11 +1,12 @@
 import java.util.Scanner;
-void main(String[]args ) {
+public class Main {
+    public static void main(String[]args ) {
+
     Scanner scanner = new Scanner(System.in);
 
     String username;
     String password;
     String cellPhoneNumber;
-
 //using a while loop only breaking when captured
     while (true) {
         System.out.println("Create a username(should contain an underscore and is no more than 5 characters long)");
@@ -83,7 +84,7 @@ void main(String[]args ) {
     scanner.close();
 }
 
-
+}
 
 
 

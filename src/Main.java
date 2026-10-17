@@ -89,7 +89,36 @@ public class Main {
                 break;
             }
         }
+        //Part 2 POE
+        // QuickChat
+        int selectOption;
+
+            System.out.println("Welcome to QuickChat");
+            System.out.println("Please select an option");
+            System.out.println("1. Send messgages");
+            System.out.println("2. Show recently sent messages");
+            System.out.println("3. Quit");
+
+            selectOption = scanner.nextInt();
+            scanner.nextLine();
+
+
+            if (selectOption==1){
+                System.out.println("you selected to send messages");
+            }
+            else if (selectOption==2){
+                System.out.println("Coming soon.");
+            }
+            else if (selectOption==3){
+                System.out.println("Goodbye");
+            }
+            else{
+                System.out.println("Invalid option");
+            }
+
 
         scanner.close();
     }
+
 }
+

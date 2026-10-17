@@ -100,8 +100,6 @@ public class Main {
             System.out.println("3. Quit");
 
             selectOption = scanner.nextInt();
-            scanner.nextLine();
-
 
             if (selectOption==1){
                 System.out.println("you selected to send messages");

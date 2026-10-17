@@ -62,7 +62,7 @@ public class Main {
                 System.out.println("Cell phone number successfully added.");
                 break;
             } else {
-                System.out.println("Cell phone number incorrectly formatted or does not contain international code.");
+                System.out.println("Cell phone number incorrectly formatted or does not contain national code.(+27)");
             }
         }
 
@@ -93,6 +93,3 @@ public class Main {
         scanner.close();
     }
 }
-
-
-

@@ -24,7 +24,7 @@ public class Main {
             System.out.println("Create a username (must contain an underscore and be no more than 5 characters):");
             username = scanner.nextLine();
 
-            Login login = new Login( username, "", "");
+            Login login = new Login(username, "", "");
 
             if (login.checkUserName()) {
                 System.out.println("Username successfully captured.");
@@ -93,54 +93,63 @@ public class Main {
         // QuickChat
         int selectOption;
         String messsage = "";
-        int numberOfMessages= 1;
+        int numberOfMessages = 1;
         String messageHash = "";
+        String messageOption;
         Message messageObject = null;
-        
-
-            System.out.println("Welcome to QuickChat");
-            System.out.println("Please select an option");
-            System.out.println("1. Send messages");
-            System.out.println("2. Show recently sent messages");
-            System.out.println("3. Quit");
-
-            selectOption = scanner.nextInt();
-
-            if (selectOption==1){
-                System.out.println("you selected to send messages");
-                System.out.println("How many messages would you like to send");
-                numberOfMessages=scanner.nextInt();
-                
-                for (int i=1; i<= numberOfMessages; i++){
-                    int messageNumber=i;
-
-                    System.out.println("Enter Message ID");
-                    String messageID = scanner.nextLine();
-                    System.out.println("Enter recipient Cell phone number");
-                    String recipientCell= scanner.nextLine();
-                    System.out.println("Enter your message");
-                    String message=scanner.nextLine();
 
 
+        System.out.println("Welcome to QuickChat");
+        System.out.println("Please select an option");
+        System.out.println("1. Send messages");
+        System.out.println("2. Show recently sent messages");
+        System.out.println("3. Quit");
 
-                    Message meessage=new Message(messageID, numberOfMessages , recipientCell, messsage, messageHash);
-                    
-                    System.out.println(messageObject.checkMessageID());
-                    System.out.println(messageObject.checkRecipientCell());
-                    System.out.println(messageObject.checkNumberOfMessages());
+        selectOption = scanner.nextInt();
 
-                    if (messageObject.checkMessageLength()){
-                        System.out.println("Message sent.");
+        if (selectOption == 1) {
+            System.out.println("you selected to send messages");
+            System.out.println("How many messages would you like to send");
+            numberOfMessages = scanner.nextInt();
+            scanner.nextLine();
+            for (int i = 1; i <= numberOfMessages; i++) {
+                System.out.println("Enter recipient Cell phone number");
+                String recipientCell = scanner.nextLine();
+                System.out.println("Enter your message");
+                String message = scanner.nextLine();
+                messageObject = new Message("", numberOfMessages, recipientCell, message, messageHash);
+
+                String messageID = messageObject.generateMessageID();
+                System.out.println("MessageID:" + messageID);
+
+
+                System.out.println(messageObject.checkMessageID());
+                System.out.println(messageObject.checkRecipientCell());
+                System.out.println(messageObject.checkNumberOfMessages());
+
+                if (messageObject.checkMessageLength()) {
+                    messageHash = messageObject.createMessageHash();
+                    System.out.println("Message Hash: " + messageHash);
+                    System.out.println("Send, Store or disregard");
+                    messageOption = scanner.nextLine();
+
+                    System.out.println(messageObject.SentMessage(messageOption));
+                    if (messageOption.equals("Store")) {
+                        System.out.println(messageObject.storeMessages());
                     }
-                    else{
-                        System.out.println("Please enter a message that is less than 250 words");
-                    }
-
+                } else {
+                    System.out.println("Please enter a message that is less than 250 characters");
                 }
+
             }
-            else if (selectOption==2){
-                System.out.println("Coming soon.");
+        } else if (selectOption == 2) {
+            if (messageObject != null) {
+                System.out.println(messageObject.printMessage());
+            } else {
+                System.out.println("no messages sent yet");
             }
+        }
+
             else if (selectOption==3){
                 System.out.println("Goodbye");
             }

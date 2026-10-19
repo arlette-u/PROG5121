@@ -130,7 +130,7 @@ public class Main {
                 if (messageObject.checkMessageLength()) {
                     messageHash = messageObject.createMessageHash();
                     System.out.println("Message Hash: " + messageHash);
-                    System.out.println("Send, Store or disregard");
+                    System.out.println("Send, Store or Disregard");
                     messageOption = scanner.nextLine();
 
                     System.out.println(messageObject.SentMessage(messageOption));

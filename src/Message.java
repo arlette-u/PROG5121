@@ -64,7 +64,7 @@ public class Message {
             return "message sent";
         } else if (messageOption.equals("store")) {
             return "Message stored";
-        } else if (messageOption.equals("disregard option")) {
+        } else if (messageOption.equals("Disregard")) {
             return "Message Disregarded";
         } else {
             return "Invalid Option";
@@ -89,7 +89,7 @@ public class Message {
             FileWriter writer = new FileWriter("messages.json");
 
             writer.write("{\n");
-            writer.write(" \"messageID\": \"" + messageID + "\",\n");
+            writer.write(" \"messageID\":\"" + messageID + "\",\n");
             writer.write(" \"messageNumber\": " + numberOfMessages + ",\n");
             writer.write(" \"recipient\": \"" + recipientCell + "\",\n");
             writer.write(" \"message\": \"" + message + "\",\n");

@@ -5,12 +5,25 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
+//Variable declarations
         String name;
         String lastName;
         String username;
         String password;
         String cellPhoneNumber;
+        int selectOption;
+        String messsage ;
+        int numberOfMessages = 0;
+        String messageHash="";
+        String messageOption = "";
+        Message messageObject = null;
+        //Array declaration (used in part 3)
+        String[] sentMessageArray;
+        String[] disregardedMessageArray;
+        String[] storedMessageArray;
+        String[] messageHashArray;
+        String[] messageIDArray;
+
 
         System.out.println("Enter your name:");
         name = scanner.nextLine();
@@ -56,13 +69,13 @@ public class Main {
             System.out.println("Enter your South African cellphone number (+27):");
             cellPhoneNumber = scanner.nextLine();
 
-            Login login = new Login(username, password, cellPhoneNumber);
+            Login login = new Login( username, password, cellPhoneNumber);
 
             if (login.checkCellPhoneNumber()) {
                 System.out.println("Cell phone number successfully added.");
                 break;
             } else {
-                System.out.println("Cell phone number incorrectly formatted or does not contain national code.(+27)");
+                System.out.println("Cell phone number incorrectly formatted or does not contain international code.");
             }
         }
 
@@ -70,6 +83,7 @@ public class Main {
         Login login = new Login(username, password, cellPhoneNumber);
 
         System.out.println("Registration successful!");
+
 
 // LOGIN SECTION
         while (true) {
@@ -91,13 +105,6 @@ public class Main {
         }
         //Part 2 POE
         // QuickChat
-        int selectOption;
-        String messsage = "";
-        int numberOfMessages = 1;
-        String messageHash = "";
-        String messageOption;
-        Message messageObject = null;
-
 
         System.out.println("Welcome to QuickChat");
         System.out.println("Please select an option");
@@ -112,15 +119,25 @@ public class Main {
             System.out.println("How many messages would you like to send");
             numberOfMessages = scanner.nextInt();
             scanner.nextLine();
+
+            sentMessageArray = new String[numberOfMessages];
+            disregardedMessageArray = new String[numberOfMessages];
+            storedMessageArray = new String[numberOfMessages];
+            messageHashArray = new String[numberOfMessages];
+            messageIDArray = new String[numberOfMessages];
+
             for (int i = 1; i <= numberOfMessages; i++) {
                 System.out.println("Enter recipient Cell phone number");
                 String recipientCell = scanner.nextLine();
+
                 System.out.println("Enter your message");
                 String message = scanner.nextLine();
+
                 messageObject = new Message("", numberOfMessages, recipientCell, message, messageHash);
 
                 String messageID = messageObject.generateMessageID();
                 System.out.println("MessageID:" + messageID);
+                messageIDArray[i - 1] = messageID;
 
 
                 System.out.println(messageObject.checkMessageID());
@@ -130,35 +147,45 @@ public class Main {
                 if (messageObject.checkMessageLength()) {
                     messageHash = messageObject.createMessageHash();
                     System.out.println("Message Hash: " + messageHash);
-                    System.out.println("Send, Store or Disregard");
-                    messageOption = scanner.nextLine();
+                    messageHashArray[i - 1] = messageHash;
 
+                    System.out.println("Send, Store or Disregard");
+                    messageOption = scanner.nextLine().trim();
                     System.out.println(messageObject.SentMessage(messageOption));
-                    if (messageOption.equals("Store")) {
+
+                    if (messageOption.equals("Send")) {
+                        sentMessageArray[i - 1] = message;
+                        System.out.println(messageObject.SentMessage(messageOption));
+
+                    } else if (messageOption.equals("Store")) {
+                        storedMessageArray[i - 1] = message;
                         System.out.println(messageObject.storeMessages());
+
+                    } else if (messageOption.equals("Disregard")) {
+                        disregardedMessageArray[i - 1] = message;
+                        System.out.println(messageObject.SentMessage(messageOption));
+
+                    } else{
+                        System.out.println("Invalid Option");
                     }
+
                 } else {
                     System.out.println("Please enter a message that is less than 250 characters");
                 }
-
             }
+
         } else if (selectOption == 2) {
-            if (messageObject != null) {
-                System.out.println(messageObject.printMessage());
-            } else {
-                System.out.println("no messages sent yet");
-            }
+            System.out.println("no messages sent yet");
+        } else if (selectOption == 3) {
+            System.out.println("Goodbye");
+        } else {
+            System.out.println("Invalid option");
         }
-
-            else if (selectOption==3){
-                System.out.println("Goodbye");
-            }
-            else{
-                System.out.println("Invalid option");
-            }
 
         scanner.close();
     }
-
 }
+
+
+
 

@@ -21,8 +21,6 @@ class MessageTest {
     assertEquals(1, message.returnTotalMessages());
     }
 
-
-
     @Test
     @DisplayName("Test task 2- message")
         void testSentMessage2(){

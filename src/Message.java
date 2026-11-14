@@ -1,6 +1,9 @@
 import java.util.Locale;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
 
 public class Message {
 
@@ -41,7 +44,7 @@ public class Message {
     }
 
     public String generateMessageID() {
-        long number = (long) (Math.random() * 9000000000l) + 1000000000L;
+        long number = (long) (Math.random() * 9000000000L) + 1000000000L;
         messageID = String.valueOf(number);
         return messageID;
 
@@ -60,12 +63,12 @@ public class Message {
     }
 
     public String SentMessage(String messageOption) {
-        if (messageOption.equals("send")) {
+        if (messageOption.equals("Send")) {
             return "message sent";
-        } else if (messageOption.equals("store")) {
+        } else if (messageOption.equals("Store")) {
             return "Message stored";
         } else if (messageOption.equals("Disregard")) {
-            return "Message Disregarded";
+            return "Press 0 to delete message";
         } else {
             return "Invalid Option";
         }
@@ -77,6 +80,7 @@ public class Message {
                 + "Recipient:" + recipientCell
                 + "Message:" + message
                 + "Message Hash:" + messageHash;
+
     }
 
     public int returnTotalMessages() {
@@ -85,25 +89,41 @@ public class Message {
 
     public String storeMessages() {
         try {
+            String existingJson = "";
+            if (Files.exists(Path.of("message.json"))) {
+                existingJson = Files.readString(
+                        Path.of("message.json"), StandardCharsets.UTF_8);
+            }
+            String newMessage = "{\n" + "\"messageID\": \"" + escapeJson(messageID) + "\",\n"
+           + "{\n" + "\"messageNumber\": \"" + numberOfMessages+",\n"
+                    +"{\n" + "\"recipient\": \""+escapeJson(recipientCell)+"\",\n"
+                    +"{\n" + "\"message\": \""+escapeJson(message)+"\",\n"
+                    +"{\n" + "\"messageHash\": \""+escapeJson(messageHash)+"\"\n"+"}";
 
-            FileWriter writer = new FileWriter("messages.json");
+            String updatedJson;
+            if(existingJson.isBlank() || existingJson.trim().equals("[]")){
+                updatedJson ="[\n"+newMessage+"\n]";
+            }else {
+                existingJson=existingJson.trim();
+                existingJson=existingJson.substring(0,existingJson.length()-1);
+                updatedJson=existingJson + ",\n" +newMessage + "\n]";
+            }
+            Files.writeString(
+                    Path.of("message.json"), updatedJson,StandardCharsets.UTF_8);
+            return "Mmessages stored successfully.";
 
-            writer.write("{\n");
-            writer.write(" \"messageID\":\"" + messageID + "\",\n");
-            writer.write(" \"messageNumber\": " + numberOfMessages + ",\n");
-            writer.write(" \"recipient\": \"" + recipientCell + "\",\n");
-            writer.write(" \"message\": \"" + message + "\",\n");
-            writer.write(" \"messageHash\": \"" + messageHash + "\"\n");
-            writer.write("}");
-
-            writer.close();
-
-            return "Message stored successfully.";
-
-        } catch (IOException e) {
-
+        }catch (IOException e){
             return "Message could not be stored.";
+        }
+        }
+        private String escapeJson(String text){
+            return text.replace("\\","\\\\")
+                    .replace("\"","\\\"")
+                            .replace("\n","\\n")
+                    .replace("\r","\\r");
+
         }
 
     }
-}
+
+

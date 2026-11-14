@@ -16,7 +16,7 @@ public class LoginTest {
     @Test
     @DisplayName("Username incorrectly formatted")
     void testUsernameIncorrectlyFormatted() {
-        Login login = new Login("kyle!!!!!!!", "Ch&2&sec@ke99!", "+27838968976");
+        Login login = new Login( "kyle!!!!!!!", "Ch&2&sec@ke99!", "+27838968976");
         assertFalse(login.checkUserName());
     }
 

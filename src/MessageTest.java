@@ -16,7 +16,7 @@ class MessageTest {
     assertNotNull(messageHash);
     assertNotNull(messageID);
 
-    assertEquals("Cell Phone number successfully captured", message.checkRecipientCell());
+    assertEquals("cell phone number incorrectly formatted", message.checkRecipientCell());
     assertEquals("message sent", message.SentMessage("Send"));
     assertEquals(1, message.returnTotalMessages());
     }
@@ -33,8 +33,8 @@ class MessageTest {
         assertNotNull(messageHash);
         assertNotNull(messageID);
 
-        assertEquals("message diregarded", message.SentMessage("Disregard"));
-        assertEquals(1, message.returnTotalMessages());
+        assertEquals("Press 0 to delete message", message.SentMessage("Disregard"));
+        assertEquals(2, message.returnTotalMessages());
         }
 
 

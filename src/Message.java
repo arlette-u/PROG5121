@@ -77,6 +77,21 @@ public class Message {
             return "Invalid Option";
         }
     }
+    public void displaySentMessages(String[] sentMessageArray) {
+
+        boolean messagesFound = false;
+
+        for (int i = 0; i < sentMessageArray.length; i++) {
+
+            if (sentMessageArray[i] != null) {
+                System.out.println(sentMessageArray[i]);
+                messagesFound = true;
+            }
+        }
+        if (!messagesFound) {
+            System.out.println("No messages sent yet");
+        }
+    }
 
     public String printMessage() {
         return "Message ID" + messageID

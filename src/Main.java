@@ -19,7 +19,7 @@ public class Main {
         Message messageObject = new Message("", 0, "", "", "");
 
         //Array declaration (used in part 3)
-        String[] sentMessageArray;
+        String[] sentMessageArray= new String[0];
         String[] disregardedMessageArray;
         String[] storedMessageArray = new String[0];
         String[] messageHashArray = new String[0];
@@ -191,7 +191,7 @@ public class Main {
                 }
 
             } else if (selectOption == 2) {
-                System.out.println("no messages sent yet");
+                messageObject.displaySentMessages(sentMessageArray);
 
             } else if (selectOption == 3) {
                 System.out.println("Goodbye");

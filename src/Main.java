@@ -107,7 +107,7 @@ public class Main {
                 break;
             }
         }
-        //Part 2 POE
+        //Part 2&&3 POE
         // QuickChat
 
         System.out.println("Welcome to QuickChat");
@@ -230,7 +230,7 @@ public class Main {
                     System.out.println("Invalid option");
                 }
             }
-        }while (selectOption != 3) ;
+        }while (selectOption != 3);
 
             scanner.close();
         }

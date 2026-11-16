@@ -54,8 +54,7 @@ class MessageTest {
         assertNotNull(messageHash);
         assertNotNull(messageID);
 
-        assertEquals("Cellphone number successfully entered",
-                message.checkRecipientCell());
+        assertEquals("Cellphone number successfully entered",message.checkRecipientCell());
 
         assertEquals("message sent", message.SentMessage("Send"));
         assertEquals(1, message.returnTotalMessages());
@@ -76,8 +75,7 @@ class MessageTest {
         assertNotNull(messageID);
         assertNotNull(messageHash);
 
-        assertEquals("cell phone number incorrectly formatted",
-                message.checkRecipientCell());
+        assertEquals("cell phone number incorrectly formatted", message.checkRecipientCell());
     }
 
     // Test 4 - Check message ID
@@ -102,8 +100,10 @@ class MessageTest {
         Message message = new Message("", 5, "0821234567",
                 "Ok, I am leaving without you.", "");
 
+        String messageID=message.generateMessageID();
         String messageHash = message.createMessageHash();
 
+        assertNotNull(messageID);
         assertNotNull(messageHash);
         assertFalse(messageHash.isEmpty());
     }
